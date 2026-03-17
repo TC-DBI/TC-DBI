@@ -14,7 +14,7 @@
             padding: 20px;
         }
         .container {
-            max-width: 1400px; /* 稍微加宽一点以适应6列 */
+            max-width: 1400px;
             margin: 0 auto;
             background-color: #fff;
             padding: 20px 40px;
@@ -50,7 +50,7 @@
             border-collapse: collapse;
             margin-top: 20px;
             border: none;
-            table-layout: fixed; /* 固定列宽，防止因为文本过长导致排版变形 */
+            table-layout: fixed;
         }
         th, td {
             padding: 15px 10px;
@@ -79,8 +79,9 @@
         tbody tr:last-child td {
             border-bottom: none;
         }
-        /* Transcript column styling */
-        #main-results-table td:first-child {
+        /* Transcript column styling for both tables */
+        #main-results-table td:first-child, 
+        #ablation-table td:first-child {
             text-align: left;
             font-style: italic;
             width: 25%;
@@ -93,7 +94,7 @@
             min-width: 120px;
         }
         .ours-highlight {
-            background-color: #f0f7ff; /* 给Ours的模型稍微加一点底色突出 */
+            background-color: #f0f7ff;
             font-weight: bold;
         }
     </style>
@@ -222,6 +223,116 @@
                     <td><audio controls src="demo-en/maskgct/sample_0008.wav"></audio></td>
                     <td><audio controls src="demo-en/ablation/sample_0008.wav"></audio></td>
                     <td class="ours-highlight"><audio controls src="demo-en/ours/sample_0008.wav"></audio></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Ablation Study: Impact of Confidence Threshold &tau;</h2>
+        <div style="text-align: center; margin-top: 20px;">
+            <img src="figs/ablation_study.png" alt="Ablation Study Results" style="max-width: 80%; border: 1px solid #ccc;">
+        </div>
+        <p class="figure-caption">
+            To further examine how trajectory confidence translates into inference gains, we evaluate TC-DBI under different thresholds &tau;.
+        </p>
+
+        <table id="ablation-table">
+            <thead>
+                <tr>
+                    <th>文本 (Transcript)</th>
+                    <th>Fixed Block Size</th>
+                    <th>&tau; = 0.65</th>
+                    <th>&tau; = 0.70</th>
+                    <th>&tau; = 0.75</th>
+                    <th>&tau; = 0.80</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="6" class="group-header">中文 (Chinese)</td>
+                </tr>
+                <tr>
+                    <td>当我们做体验时，我们到底在做什么。</td>
+                    <td><audio controls src="demo-ablation-zh/fixed-block-size/sample_0001.wav"></audio></td>
+                    <td><audio controls src="demo-ablation-zh/TC-DBI-0.65/sample_0001.wav"></audio></td>
+                    <td><audio controls src="demo-ablation-zh/TC-DBI-0.7/sample_0001.wav"></audio></td>
+                    <td><audio controls src="demo-ablation-zh/TC-DBI-0.75/sample_0001.wav"></audio></td>
+                    <td><audio controls src="demo-ablation-zh/TC-DBI-0.8/sample_0001.wav"></audio></td>
+                </tr>
+                <tr>
+                    <td>如果您不愿意开刀的话，那就只能使用缓慢排水法。</td>
+                    <td><audio controls src="demo-ablation-zh/fixed-block-size/sample_0002.wav"></audio></td>
+                    <td><audio controls src="demo-ablation-zh/TC-DBI-0.65/sample_0002.wav"></audio></td>
+                    <td><audio controls src="demo-ablation-zh/TC-DBI-0.7/sample_0002.wav"></audio></td>
+                    <td><audio controls src="demo-ablation-zh/TC-DBI-0.75/sample_0002.wav"></audio></td>
+                    <td><audio controls src="demo-ablation-zh/TC-DBI-0.8/sample_0002.wav"></audio></td>
+                </tr>
+                <tr>
+                    <td>这薄壳被外面的水泡软，被雪和泥土温暖，被阳光射透。</td>
+                    <td><audio controls src="demo-ablation-zh/fixed-block-size/sample_0003.wav"></audio></td>
+                    <td><audio controls src="demo-ablation-zh/TC-DBI-0.65/sample_0003.wav"></audio></td>
+                    <td><audio controls src="demo-ablation-zh/TC-DBI-0.7/sample_0003.wav"></audio></td>
+                    <td><audio controls src="demo-ablation-zh/TC-DBI-0.75/sample_0003.wav"></audio></td>
+                    <td><audio controls src="demo-ablation-zh/TC-DBI-0.8/sample_0003.wav"></audio></td>
+                </tr>
+                <tr>
+                    <td>小黑狗摆摆尾巴说，我身上没有汗腺，可舌头上有许多汗腺的呢。</td>
+                    <td><audio controls src="demo-ablation-zh/fixed-block-size/sample_0004.wav"></audio></td>
+                    <td><audio controls src="demo-ablation-zh/TC-DBI-0.65/sample_0004.wav"></audio></td>
+                    <td><audio controls src="demo-ablation-zh/TC-DBI-0.7/sample_0004.wav"></audio></td>
+                    <td><audio controls src="demo-ablation-zh/TC-DBI-0.75/sample_0004.wav"></audio></td>
+                    <td><audio controls src="demo-ablation-zh/TC-DBI-0.8/sample_0004.wav"></audio></td>
+                </tr>
+                <tr>
+                    <td>但是这个大坝仍然不排除垮坝的可能性。</td>
+                    <td><audio controls src="demo-ablation-zh/fixed-block-size/sample_0005.wav"></audio></td>
+                    <td><audio controls src="demo-ablation-zh/TC-DBI-0.65/sample_0005.wav"></audio></td>
+                    <td><audio controls src="demo-ablation-zh/TC-DBI-0.7/sample_0005.wav"></audio></td>
+                    <td><audio controls src="demo-ablation-zh/TC-DBI-0.75/sample_0005.wav"></audio></td>
+                    <td><audio controls src="demo-ablation-zh/TC-DBI-0.8/sample_0005.wav"></audio></td>
+                </tr>
+
+                <tr>
+                    <td colspan="6" class="group-header">英文 (English)</td>
+                </tr>
+                <tr>
+                    <td>Next was "The Last King of Scotland", which won an Oscar for best actor.</td>
+                    <td><audio controls src="demo-ablation-en/fixed-block-size/sample_0001.wav"></audio></td>
+                    <td><audio controls src="demo-ablation-en/TC-DBI-0.65/sample_0001.wav"></audio></td>
+                    <td><audio controls src="demo-ablation-en/TC-DBI-0.7/sample_0001.wav"></audio></td>
+                    <td><audio controls src="demo-ablation-en/TC-DBI-0.75/sample_0001.wav"></audio></td>
+                    <td><audio controls src="demo-ablation-en/TC-DBI-0.8/sample_0001.wav"></audio></td>
+                </tr>
+                <tr>
+                    <td>For the full history, see List of Southern Conference men's basketball champions.</td>
+                    <td><audio controls src="demo-ablation-en/fixed-block-size/sample_0002.wav"></audio></td>
+                    <td><audio controls src="demo-ablation-en/TC-DBI-0.65/sample_0002.wav"></audio></td>
+                    <td><audio controls src="demo-ablation-en/TC-DBI-0.7/sample_0002.wav"></audio></td>
+                    <td><audio controls src="demo-ablation-en/TC-DBI-0.75/sample_0002.wav"></audio></td>
+                    <td><audio controls src="demo-ablation-en/TC-DBI-0.8/sample_0002.wav"></audio></td>
+                </tr>
+                <tr>
+                    <td>There is also a genetic test that can be done for this disorder.</td>
+                    <td><audio controls src="demo-ablation-en/fixed-block-size/sample_0003.wav"></audio></td>
+                    <td><audio controls src="demo-ablation-en/TC-DBI-0.65/sample_0003.wav"></audio></td>
+                    <td><audio controls src="demo-ablation-en/TC-DBI-0.7/sample_0003.wav"></audio></td>
+                    <td><audio controls src="demo-ablation-en/TC-DBI-0.75/sample_0003.wav"></audio></td>
+                    <td><audio controls src="demo-ablation-en/TC-DBI-0.8/sample_0003.wav"></audio></td>
+                </tr>
+                <tr>
+                    <td>He last served as a member of parliament from the opposition.</td>
+                    <td><audio controls src="demo-ablation-en/fixed-block-size/sample_0004.wav"></audio></td>
+                    <td><audio controls src="demo-ablation-en/TC-DBI-0.65/sample_0004.wav"></audio></td>
+                    <td><audio controls src="demo-ablation-en/TC-DBI-0.7/sample_0004.wav"></audio></td>
+                    <td><audio controls src="demo-ablation-en/TC-DBI-0.75/sample_0004.wav"></audio></td>
+                    <td><audio controls src="demo-ablation-en/TC-DBI-0.8/sample_0004.wav"></audio></td>
+                </tr>
+                <tr>
+                    <td>In May of the same year he was made Chaplain to the King.</td>
+                    <td><audio controls src="demo-ablation-en/fixed-block-size/sample_0005.wav"></audio></td>
+                    <td><audio controls src="demo-ablation-en/TC-DBI-0.65/sample_0005.wav"></audio></td>
+                    <td><audio controls src="demo-ablation-en/TC-DBI-0.7/sample_0005.wav"></audio></td>
+                    <td><audio controls src="demo-ablation-en/TC-DBI-0.75/sample_0005.wav"></audio></td>
+                    <td><audio controls src="demo-ablation-en/TC-DBI-0.8/sample_0005.wav"></audio></td>
                 </tr>
             </tbody>
         </table>
